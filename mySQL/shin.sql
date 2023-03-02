@@ -1,43 +1,71 @@
-SELECT * FROM shin.produto;
-describe produto;
+CREATE SCHEMA SHIN;
 
-#--------Unique para registros FK-----#
-alter table produto add unique(codigoFornecedor); 
+CREATE TABLE `cliente` (
+  `id` bigint PRIMARY KEY NOT NULL,
+  `nome` varchar(50),
+  `usuario` varchar(255) UNIQUE NOT NULL,
+  `CPF` bigint(11),
+  `CEP` int(8),
+  `endereco` varchar(200),
+  `cidade` varchar(50),
+  `uf` char(2),
+  `telefone` varchar(14),
+  `email` varchar(50)
+);
 
-#--------codigoFornecedor FK-----#
-ALTER TABLE produto
-ADD FOREIGN KEY (codigoFornecedor)
-REFERENCES fornecedor(id);
+CREATE TABLE `pedido` (
+  `id` bigint PRIMARY KEY NOT NULL,
+  `compradorID` varchar(8),
+  `produtoID` int(8),
+  `numeroPedido` int(8),
+  `atendenteResponsavel` text(50),
+  `dataPedido` int(8),
+  `quantidadeItens` int(4),
+  `prazoEntrega` varchar(3),
+  `dataEnvio` int(8),
+  `totalCompra` int(6),
+  `dataEntrega` int(8),
+  `codigoRastreio` varchar(20)
+);
 
-#--------alteração nome do atributo-----#
-ALTER TABLE produto
-CHANGE codigoCategoria categoria varchar(20);
+CREATE TABLE `produto` (
+  `id` bigint PRIMARY KEY NOT NULL,
+  `nomeProduto` varchar(50),
+  `codigoFornecedor` int(6),
+  `codigoCategoria` int(2),
+  `tamanho` char(1),
+  `precoUnitario` int(5),
+  `valorDesconto` int(4),
+  `unidadesEstoque` int(3),
+  `valorBase` int(3),
+  `statusProduto` text(20)
+);
 
-SELECT * FROM shin.produto;
+CREATE TABLE `fornecedor` (
+  `id` bigint PRIMARY KEY NOT NULL,
+  `nomeEmpresa` varchar(100),
+  `categoriaProduto` text(20),
+  `nomeResponsavel` text(50),
+  `contatoResponsavel` varchar(14),
+  `cargoResponsavel` text(20),
+  `CNPJEmpresa` int(14),
+  `enderecoEmpresa` varchar(100),
+  `telefoneEmpresa` varchar(14),
+  `email` varchar(50)
+);
 
-INSERT INTO produto
-(id, nomeProduto, categoria, tamanho, precoUnitario, valorDesconto, unidadesEstoque, valorBase, statusProduto)
-VALUES
-('1', 'Vestido costas nuas abertura lateral simples', 'Vestidos', 'M','69.90', '10.99', '14', '8', 'disponível'),
-('2', 'Calça alfaiataria cintura alta', 'Calças', 'P', '108.90', '10.89', '18', '15', 'disponível'),
-('3', 'Cropped de renda', 'Blusas', 'G', '49.90', '4.99', '13', '10', 'disponível'),
-('4', 'Calça pantalona', 'Calças', 'G', '89.80', '8.98', '15', '10', 'disponível'),
-('5', 'Calça wide leg cintura baixa', 'Calças', 'P', '79.90', '7.99', '12', '8', 'disponível'),
-('6', 'Vestido floral', 'Vestidos', 'U', '59.95', '5.99', '15', '12', 'disponível'),
-('7', 'Conjunto de jaqueta e saia social', 'Conjuntos', 'M', '139.80', '13.98', '7', '5', 'disponível'),
-('8', 'Cropped manga longa', 'Blusas', 'P', '37.90', '3.79', '23', '15', 'disponível'),
-('9', 'Vestido justo liso gola alta', 'Vestidos', 'M', '78.89', '7.88', '12', '10', 'disponível'),
-('10', 'Cropped malha canelada', 'Blusas', 'P', '30.90', '3.09', '20', '16', 'disponível');
+CREATE TABLE `transportadora` (
+  `id` bigint PRIMARY KEY NOT NULL,
+  `viagemId` varchar(8),
+  `nomeEmpresa` varchar(100),
+  `enderecoEmpresa` varchar(100),
+  `telefoneEmpresa` varchar(14),
+  `CNPJEmpresa` int(14),
+  `placaVeiculo` varchar(7),
+  `tipoVeiculo` varchar(50),
+  `motoristaResponsavel` text(50),
+  `numeroNota` int(6)
+);
 
-SELECT * FROM shin.produto;
 
-UPDATE `shin`.`produto` SET `codigoFornecedor` = '1' WHERE (`id` = '1');
-UPDATE `shin`.`produto` SET `codigoFornecedor` = '4' WHERE (`id` = '2');
-UPDATE `shin`.`produto` SET `codigoFornecedor` = '2' WHERE (`id` = '3');
-UPDATE `shin`.`produto` SET `codigoFornecedor` = '5' WHERE (`id` = '4');
-UPDATE `shin`.`produto` SET `codigoFornecedor` = '9' WHERE (`id` = '5');
-UPDATE `shin`.`produto` SET `codigoFornecedor` = '7' WHERE (`id` = '6');
-UPDATE `shin`.`produto` SET `codigoFornecedor` = '10' WHERE (`id` = '7');
-UPDATE `shin`.`produto` SET `codigoFornecedor` = '3' WHERE (`id` = '8');
-UPDATE `shin`.`produto` SET `codigoFornecedor` = '8' WHERE (`id` = '9');
-UPDATE `shin`.`produto` SET `codigoFornecedor` = '6' WHERE (`id` = '10');
+
