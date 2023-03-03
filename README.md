@@ -9,11 +9,11 @@
 <p>O nicho escolhido para elaboração do projeto foi: Moda feminina.</p>
 
 <h2>📌 Requisitos:</h2>
-<p>- O banco de dados deve ser modelado antes de sua implementação em MySQL; ⁣</p>
-<p>- As entidades envolvidas devem ter relacionamentos entre si; ⁣</p>
-<p>- O banco de dados deve ser implementado de maneira fiel ao que foi modelado no dbDiagram; <⁣/p>
+<p>- O banco de dados deve ser modelado antes de sua implementação em MySQL;⁣</p>
+<p>- As entidades envolvidas devem ter relacionamentos entre si;</p>
+<p>- O banco de dados deve ser implementado de maneira fiel ao que foi modelado no dbDiagram;</p>
 <p>- Todos os arquivos relacionados ao projeto devem ser colocados no GitHub.</p>
-<p>- O site do banco de dados, bem como sua modelagem, devem possuir: <⁣/p>
+<p>- O site do banco de dados, bem como sua modelagem, devem possuir:</p>
 <ul>
   
 <li>Pelo menos quatro entidades;</li>
